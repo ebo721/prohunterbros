@@ -83,7 +83,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
+        sans: ["Lexend Deca", "sans-serif", "var(--font-sans)"],
+        display: ["HubSpot Sans", "Lexend Deca", "sans-serif"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
       },
