@@ -1,262 +1,385 @@
-import { Navigation } from "@/components/Navigation";
+"use client";
+import React, { useState } from "react";
+import { Navigation as SiteNavigation } from "@/components/Navigation"; // Нэрийг нь өөрчлөв
 import { Footer } from "@/components/Footer";
 import { FeatureCard } from "@/components/FeatureCard";
 import { Button } from "@/components/ui/button";
 import { useHighContrast } from "@/hooks/use-theme";
-import { motion } from "framer-motion";
-import { BarChart3, Users, MessageCircle, PieChart, Globe2, Zap } from "lucide-react";
+import { BarChart3, Users, MessageCircle, X, PieChart, Globe2, Zap, ArrowRight, Maximize2 } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+// Swiper импорт - Нэрийг SwiperNav гэж өөрчилсөн
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectFade, Keyboard } from 'swiper/modules';
+// Swiper CSS заавал байх ёстой
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+const slides = [
+  {
+    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070",
+    title: "Global Connectivity",
+    description: "Bringing world-class marketing solutions to your fingertips."
+  },
+  {
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2070",
+    title: "Data Driven Success",
+    description: "Analyze and grow your business with our powerful CRM."
+  },
+  // ШИНЭЭР НЭМЭГДСЭН ЗУРАГНУУД:
+  {
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2071",
+    title: "Team Collaboration",
+    description: "Work together seamlessly with your team members anywhere in the world."
+  },
+  {
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2070",
+    title: "Advanced Analytics",
+    description: "Deep dive into your metrics and make better data-informed decisions."
+  },
+  {
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070",
+    title: "Digital Strategy",
+    description: "Transform your digital presence with our expert marketing strategies."
   }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
+];
 
 export default function Home() {
   const { isHighContrast, toggle } = useHighContrast();
+  // 1. State-үүд энд байх ёстой
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
+  // 2. Функц энд байх ёстой (Return-ийн дээр)
+  const openLightbox = (index: number) => {
+    console.log("Зураг нээгдлээ:", index); // Шалгах зорилгоор
+    setPhotoIndex(index);
+    setIsOpen(true);
+    };
   return (
+    
     <div className="min-h-screen bg-background flex flex-col font-sans">
-      <Navigation highContrast={isHighContrast} toggleHighContrast={toggle} />
+      <SiteNavigation highContrast={isHighContrast} toggleHighContrast={toggle}/>
+      <main className="flex-grow pt-28">
+        {/* --- 1. HERO SECTION --- */}
+        <section className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden py-20">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070" 
+              alt="Background" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/60 z-10" />
+          </div>
 
-      <main className="flex-grow pt-32">
-        {/* Hero Section */}
-        <section className="px-4 md:px-8 max-w-7xl mx-auto mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <h4 className="text-primary font-bold uppercase tracking-widest text-sm">CRM Platform</h4>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-secondary leading-[1.1]">
-                Grow better with HubStyle
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
-                Software that's powerful, not overpowering. Seamlessly connect your data, teams, and customers on one customer platform that grows with your business.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-6 text-lg rounded-md shadow-lg shadow-primary/20 transition-all hover:-translate-y-1">
-                  Get a demo
-                </Button>
-                <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/5 font-bold px-8 py-6 text-lg rounded-md border-2">
-                  Get started free
-                </Button>
-              </div>
-              <p className="text-sm text-muted-foreground pt-2">
-                Get access to all of our free tools. No credit card required.
-              </p>
-            </motion.div>
+          <div className="relative z-20 px-4 md:px-8 max-w-7xl mx-auto w-full text-center">
+            <div className="space-y-6">
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-full blur-3xl opacity-50 z-0" />
-              {/* Illustration Placeholder - Using SVG composition */}
-              <div className="relative z-10 bg-white rounded-2xl shadow-2xl p-6 border border-border/50 overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-secondary" />
-                
-                {/* Mock UI Dashboard */}
-                <div className="space-y-6 mt-4">
-                  <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-                    <div className="h-4 w-32 bg-gray-200 rounded-full animate-pulse" />
-                    <div className="flex space-x-2">
-                      <div className="h-8 w-8 bg-gray-100 rounded-full" />
-                      <div className="h-8 w-8 bg-primary/20 rounded-full" />
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                      <div className="h-3 w-12 bg-gray-200 rounded-full" />
-                      <div className="h-6 w-16 bg-secondary/80 rounded-md" />
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                      <div className="h-3 w-12 bg-gray-200 rounded-full" />
-                      <div className="h-6 w-16 bg-primary/80 rounded-md" />
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                      <div className="h-3 w-12 bg-gray-200 rounded-full" />
-                      <div className="h-6 w-16 bg-accent/80 rounded-md" />
-                    </div>
-                  </div>
-                  
-                  <div className="h-48 bg-gray-50 rounded-lg flex items-end justify-between p-4 gap-2">
-                    {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
-                      <motion.div 
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
-                        className="w-full bg-secondary/10 rounded-t-sm relative group"
-                      >
-                         <div className={`absolute bottom-0 left-0 w-full rounded-t-sm transition-all duration-300 ${i === 5 ? 'bg-primary' : 'bg-secondary'}`} style={{ height: '100%' }} />
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+              {/* 1. SPLIT TEXT ANIMATION (Гарчиг хэсэг) */}
+              <div className="split-text-container">
+                <span className="text-part left">We believe in</span>
+                <span className="text-part right">Nature</span>
               </div>
-              
-              {/* Floating Badge */}
+              {/* 2. БУСАД ТЕКСТ БОЛОН ТОВЧЛУУР (Тусдаа motion.div) */}
               <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-6 bg-secondary text-white p-4 rounded-lg shadow-xl border-l-4 border-primary max-w-[200px]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }} // Анимаци дууссаны дараа гарч ирнэ
+                className="space-y-6"
               >
-                <div className="text-xs uppercase font-bold text-white/60 mb-1">Total Revenue</div>
-                <div className="text-2xl font-bold flex items-center">
-                  $124,500 <span className="text-green-400 text-sm ml-2">▲ 12%</span>
+                <p className="text-lg md:text-xl text-gray-200 max-w-lg mx-auto !text-white">
+                  Where Challenge Meets Professional Hunting.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+        {/* 1. About us */}
+        <section id="aboutus" className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              {/* 1. Зургийн хэсэг */}
+              <div className="w-full md:w-1/2">
+                <div className="relative">
+                  {/* Зургийн ард талын гоёл (Сонголттой) */}
+                  <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary/20 rounded-2xl -z-10"></div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200" 
+                    alt="About Us" 
+                    className="w-full h-[400px] object-cover rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                  />
                 </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="bg-white py-24">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-                The customer platform built for growth
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                With HubStyle, you can bring your teams, tools, and data together in one place.
-              </p>
-            </div>
-
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<BarChart3 className="w-6 h-6" />}
-                  title="Marketing Hub"
-                  description="Marketing software to help you grow traffic, convert more visitors, and run complete inbound marketing campaigns at scale."
-                  linkHref="#"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<Users className="w-6 h-6" />}
-                  title="Sales Hub"
-                  description="Sales CRM software to help you get deeper insights into prospects, automate the tasks you hate, and close more deals faster."
-                  linkHref="#"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<MessageCircle className="w-6 h-6" />}
-                  title="Service Hub"
-                  description="Customer service software to help you connect with customers, exceed expectations, and turn them into promoters."
-                  linkHref="#"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<PieChart className="w-6 h-6" />}
-                  title="CMS Hub"
-                  description="Content management software that's flexible for marketers, powerful for developers, and gives your customers a personalized experience."
-                  linkHref="#"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<Globe2 className="w-6 h-6" />}
-                  title="Operations Hub"
-                  description="Operations software that syncs your apps, cleans your customer data, and automates every single process."
-                  linkHref="#"
-                />
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <FeatureCard 
-                  icon={<Zap className="w-6 h-6" />}
-                  title="Commerce Hub"
-                  description="B2B commerce software designed to help you streamline your opportunity-to-revenue process and get paid faster."
-                  linkHref="#"
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="bg-secondary text-white py-24 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 transform origin-top-right" />
-          
-          <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-4xl lg:text-5xl font-bold mb-2">205k+</div>
-                <div className="text-white/70">Customers</div>
               </div>
-              <div>
-                <div className="text-4xl lg:text-5xl font-bold mb-2">135+</div>
-                <div className="text-white/70">Countries</div>
-              </div>
-              <div>
-                <div className="text-4xl lg:text-5xl font-bold mb-2">600+</div>
-                <div className="text-white/70">Integrations</div>
-              </div>
-              <div>
-                <div className="text-4xl lg:text-5xl font-bold mb-2">24/7</div>
-                <div className="text-white/70">Support</div>
+              {/* 2. Текстийн хэсэг */}
+              <div className="w-full md:w-1/2 space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary leading-tight">
+                  Quality<br /> 
+                  <span className="text-primary text-4xl"> over </span>quantity
+                </h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients.  Our crew is well skilled and professional staffs who have more than 10 years experiences in the hunting services across the country.
+                  
+                  In business, we don’t pursue number but the Quality is mandatory.
+                  For us, how’s our customer satisfaction is more important than how many hunters and hunts we have.
+                  We provide a cordial service on every part of the trip in order to satisfy clients with successful hunt and beautiful trophy.
+                </p>
               </div>
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <section className="bg-primary/5 py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">
-              Start growing with HubStyle today
+        {/* --- 2.1 Argali SECTION --- */}
+        <section id="challenge" className="bg-slate-50 py-0">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+              Argali
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Join the community of millions of professionals who are already growing better with our platform.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-6 text-lg rounded-md shadow-lg shadow-primary/20">
-                Get started free
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white border-secondary text-secondary hover:bg-secondary hover:text-white font-bold px-8 py-6 text-lg rounded-md border-2">
-                Get a demo
-              </Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <FeatureCard
+                  imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
+                  title="Altai Argali"
+                  description="Altai Argali hunt is located in Bayan-Ulgii, Khovd and Uvs provinces, approx. 10 days, average horn size 50” length and 18” base, shooting range at 300-500 yards with all-inclusive package."
+                  onClick={() => openLightbox(0)} // Index-ийн оронд 0
+              />
+              <FeatureCard 
+                icon={<Users className="w-6 h-6" />}
+                title="Khangai Argali"
+                imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
+                description="Khangai Argali hunt is located in mountains of Khangai region, approx. 8-10 days, average horn size 46” length and 15” base, shooting range at 300-500 yards with all-inclusive package."
+                linkHref="#"
+              />
+              <FeatureCard 
+                imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
+                title="GOBI's Argali"
+                description="Gobi Argali hunt is located in Gobi desert south area of the country, approx. 8-10 days, average horn size 42” length and 15” base, shooting range at 200-400 yards with all-inclusive camping."
+                linkHref="#"
+              />
             </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              Get started with free tools, and upgrade as you grow.
-            </p>
           </div>
         </section>
-      </main>
+        {/* --- 2.2 Ibex SECTION --- */}
+        <section id="Ibex" className="bg-slate-50 pt-12">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+              Ibex
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <FeatureCard 
+                icon={<BarChart3 className="w-6 h-6" />}
+                  title="Altai"
+                  description="Marketing software to help you grow traffic and run complete inbound campaigns."
+                  imageSrc="/images/marketing-preview.jpg"
+                  linkHref="#"
+                  onClick={() => openLightbox(0)} // Index-ийн оронд 0
+              />
+              <FeatureCard 
+                icon={<Users className="w-6 h-6" />}
+                title="GOBI"
+                description="CRM software to help you get deeper insights and close more deals faster."
+                linkHref="#"
+              />
+            </div>
+          </div>
+        </section>
+        {/* --- 2.3 Other SECTION --- */}
+        <section id="other" className="bg-slate-50 py-12">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+              Other
+            </h2>
+              <div className="flex flex-col gap-8 w-full">
+              <FeatureCard 
+                icon={<BarChart3 className="w-6 h-6" />}
+                  title="Other hunting"
+                  description="Marketing software to help you grow traffic and run complete inbound campaigns."
+                  imageSrc="/images/marketing-preview.jpg"
+                  linkHref="#"
+                  onClick={() => openLightbox(0)} // Index-ийн оронд 0
 
+              />
+
+
+            </div>
+          </div>
+        </section>
+        {/* --- 3. Gallery SECTION --- */}
+        <section id="gallery" className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12 text-center">
+            Gallery
+          </h2>
+          <Swiper
+            // Swiper-ийн модулиудыг тохируулах
+            modules={[Navigation, Pagination, Autoplay]}
+
+            // Хамгийн чухал хэсэг: Хэдэн зураг харагдах
+            slidesPerView={1} // Анхдагч утга (Гар утсан дээр)
+            spaceBetween={20} // Зураг хоорондын зай (px)
+
+            // Дэлгэцийн хэмжээнээс хамаарч өөрчлөгдөх (Responsive)
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+            }}
+
+            navigation={true}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full pb-12" // Pagination цэгүүд орох зай авах
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-col space-y-4">
+                  {/* 1:1 Харьцаатай зураг */}
+                  <div className="aspect-square relative overflow-hidden rounded-xl shadow-lg group">
+                    <img 
+                      src={slide.image} 
+                      alt={slide.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    {/* Зураг дээрх Overlay (Hover хийхэд харагдана) */}
+                    <div 
+                      className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"
+                      onClick={() => openLightbox(index)} // Энд index-ийг дамжуулна
+                    >
+                      <p className="text-white font-medium border border-white px-4 py-2 rounded-full pointer-events-none">
+                        Дэлгэрэнгүй харах
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Зургийн доорх текст (Сонголттой) */}
+                  <div className="text-center md:text-left">
+                    <h3 className="text-xl font-bold text-secondary">{slide.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{slide.description}</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+
+        
+      </main>
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button 
+          asChild 
+          size="lg" 
+          className="rounded-full w-14 h-14 md:w-auto md:h-12 bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group p-0 md:px-6"
+        >
+          <a 
+            href="https://wa.me/97696122771?text=Hello? What is your challenge?" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+          >
+            {/* WhatsApp SVG Icon */}
+            <svg 
+              className="w-7 h-7 md:w-5 md:h-5 fill-current" 
+              viewBox="0 0 24 24"
+            >
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            {/* Зөвхөн компьютер дээр текст харагдах, утсан дээр зөвхөн дугуй икон харагдана */}
+            <span className="hidden md:inline ml-2">Inquiry</span>
+          </a>
+        </Button>
+      </div>
       <Footer />
+      <AnimatePresence>
+        {isOpen && ( // <--- Энд isOpen-ийн утгыг "уншиж" (ашиглаж) байна
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4"
+          >
+            {/* Хаах товчлуур */}
+            <button 
+              onClick={() => setIsOpen(false)} // Буцаагаад хаана
+              className="absolute top-6 right-6 z-[10000] text-white"
+            >
+              <X size={40} />
+            </button>
+
+            {/* Зургийг Swiper-ээр харуулах хэсэг */}
+            <div className="w-full h-full max-w-5xl flex items-center justify-center">
+              <Swiper 
+                modules={[Navigation, Pagination, Keyboard]} 
+                initialSlide={photoIndex} 
+                navigation 
+                className="w-full h-full"
+              >
+                {slides.map((slide, idx) => (
+                  <SwiperSlide key={idx} className="flex flex-col items-center justify-center text-white">
+                    <img src={slide.image} className="max-h-[70vh] object-contain rounded-lg shadow-2xl" alt="" />
+                    <h3 className="mt-6 text-2xl font-bold">{slide.title}</h3>
+                    <p className="opacity-70">{slide.description}</p>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* CSS засвар */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .swiper-button-next, .swiper-button-prev { color: white !important; }
+        .swiper-pagination-bullet { background: gray !important; }
+        .swiper-pagination-bullet-active { background: #df7a27 !important; }
+        .split-text-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 3rem; /* Мобайл хэмжээ */
+          font-weight: 800;
+          overflow: hidden;
+          color: white !important;
+          line-height: 1.1;
+        }
+
+        /* Том дэлгэцэнд зориулсан хэмжээ */
+        @media (min-width: 768px) {
+          .split-text-container { font-size: 5rem; }
+        }
+
+        .text-part {
+          display: inline-block;
+          position: relative;
+          animation-duration: 1.2s;
+          animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+          animation-fill-mode: forwards;
+        }
+
+        .text-part.left {
+          transform: translateX(-100%);
+          animation-name: slide-in-left;
+          padding-right: 15px;
+        }
+
+        .text-part.right {
+          transform: translateX(100%);
+          animation-name: slide-in-right;
+          padding-left: 15px;
+          color: #df7a27; /* Баруун талын үгийг онцлох өнгө (заавал биш) */
+        }
+
+        @keyframes slide-in-left {
+          from { transform: translateX(-100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slide-in-right {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+      `}} />
     </div>
   );
 }

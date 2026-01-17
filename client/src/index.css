@@ -6,8 +6,8 @@
 
 :root {
   /* HubSpot Inspired Palette */
-  /* Primary Orange: #ff4800 -> HSL 17 100% 50% */
-  --primary: 17 100% 50%;
+  /* Primary Orange: #ff4800 -> HSL 17 100% 50% */ 
+  --primary: 27 74% 51%;
   --primary-foreground: 0 0% 100%;
 
   /* Navy Text/Secondary: #33475b -> HSL 210 29% 28% */
@@ -46,23 +46,23 @@
 
 /* High Contrast Mode Overrides */
 .high-contrast {
-  --background: 0 0% 0%;
-  --foreground: 60 100% 50%; /* Yellow text */
+  --background: 0 0% 100%;
+  --foreground: 210 29% 28%; /* Yellow text */
   
-  --primary: 60 100% 50%;
-  --primary-foreground: 0 0% 0%;
+  --primary: 210 29% 28%;
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 0 0% 100%;
-  --secondary-foreground: 0 0% 0%;
+  --secondary: 27 74% 51%;
+  --secondary-foreground: 27 74% 51%;
   
-  --card: 0 0% 10%;
-  --card-foreground: 60 100% 50%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 100%;
   
   --muted: 0 0% 20%;
-  --muted-foreground: 60 100% 50%;
+  --muted-foreground: 210 29% 28%%;
   
-  --border: 60 100% 50%;
-  --input: 60 100% 50%;
+  --border: 210 29% 28%;
+  --input: 210 29% 28%;
 }
 
 @layer base {
@@ -73,13 +73,13 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply font-bold tracking-tight text-secondary;
+    @apply font-bold tracking-tight text-primary;
   }
   
   .high-contrast h1, 
   .high-contrast h2, 
   .high-contrast h3 {
-    @apply text-primary;
+    @apply text-secondary;
   }
 }
 
@@ -94,4 +94,5 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
   }
+ 
 }

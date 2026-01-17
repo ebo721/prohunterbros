@@ -9,6 +9,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 interface NavProps {
@@ -19,7 +24,7 @@ interface NavProps {
 export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -29,43 +34,59 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
   }, []);
 
   return (
+  
     <header className="fixed top-0 w-full z-50 transition-colors-all">
       {/* Utility Nav */}
-      <div className="bg-secondary text-white py-2 px-4 md:px-8 text-xs font-medium relative z-50">
+      <div className="bg-white py-2 px-4 md:px-8 text-xs font-medium relative z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center hover:text-white/80 transition-colors focus:outline-none">
+          <div className="flex items-center space-x-6">
+            {/* Toggle Button Container */}
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={toggleHighContrast}
+                className="flex items-center focus:outline-none"
+              >
+                <div className={cn(
+                  "relative inline-flex h-5 w-10 items-center rounded-full transition-colors",
+                  highContrast ? "bg-secondary" : "bg-secondary"
+                )}>
+                  <span className={cn(
+                    "inline-block h-3 w-3 transform rounded-full bg-white transition-transform",
+                    highContrast ? "translate-x-6" : "translate-x-1"
+                  )} />
+                </div>
+                <span className="ml-2 text-xs hover:text-[#df7a27] transition-colors cursor-pointer">High Contrast</span>
+              </button>
+            </div>
+            <a 
+              href="#contact-section" 
+              className="text-xs hover:text-[#df7a27] transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact-section')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
+              Contact Us
+            </a>
+          </div>
+          <div className="flex items-center space-x-4 ml-auto">
+             <DropdownMenu modal={false}>
+              <DropdownMenuTrigger className="flex items-center hover:primary transition-colors focus:outline-none">
                 <Globe className="w-3 h-3 mr-1" />
                 <span>English</span>
                 <ChevronDown className="w-3 h-3 ml-1" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>Español</DropdownMenuItem>
-                <DropdownMenuItem>Français</DropdownMenuItem>
-                <DropdownMenuItem>Deutsch</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  <span className="mr-2">🇺🇸</span> English
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  <span className="mr-2">🇲🇳</span> Mongolia
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-          
-          <div className="flex items-center space-x-6">
-            <button 
-              onClick={toggleHighContrast}
-              className={cn(
-                "flex items-center hover:text-white/80 transition-colors focus:outline-none",
-                highContrast ? "text-primary font-bold" : ""
-              )}
-            >
-              <Accessibility className="w-3 h-3 mr-1" />
-              <span>High Contrast</span>
-            </button>
-            <Link href="/support" className="hover:text-white/80 transition-colors">
-              Customer Support
-            </Link>
-            <Link href="/contact" className="hover:text-white/80 transition-colors">
-              Contact Sales
-            </Link>
           </div>
         </div>
       </div>
@@ -73,60 +94,184 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
       {/* Main Nav */}
       <nav 
         className={cn(
-          "w-full transition-all duration-300 border-b border-transparent bg-background/95 backdrop-blur-sm",
-          isScrolled ? "shadow-md py-3 border-border/10" : "py-5"
+          "w-full transition-all duration-300 border-b border-transparent bg-primary backdrop-blur-sm",
+          isScrolled ? "shadow-md py-2 border-border/10" : "py-4"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            {/* Simple geometric logo placeholder */}
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform">
-              H
+          <Link 
+            href="#home" 
+            aria-label="Go to top"
+            className="flex items-center space-x-3 group"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setMobileMenuOpen(false); // Хэрэв мобайл меню нээлттэй бол хаана
+            }}
+            >
+            {/* Logo Image Container */}
+            <div className="h-12 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
+              <img 
+                src="icon1.png"
+                alt="Huntbrothers Logo" 
+                className="w-full h-full object-contain -translate-x-1"
+                onError={(e) => {
+                  // Хэрэв зураг ачаалахгүй бол оронд нь харагдах текст (Fallback)
+                  e.currentTarget.src = "https://placehold.co/100x100?text=HB";
+                }}
+              />
             </div>
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-secondary group-hover:text-primary transition-colors">
-              HubStyle
-            </span>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center space-x-8 font-medium text-secondary">
-             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center hover:text-primary transition-colors focus:outline-none group">
-                Products <ChevronDown className="w-4 h-4 ml-1 transition-transform group-data-[state=open]:rotate-180" />
+          <div className="hidden lg:flex items-center justify-center space-x-8 font-medium text-white flex-1">
+               <Link 
+                 href="#aboutus" 
+                 className="relative group hover:text-secondary transition-colors cursor-pointer"
+                 onClick={(e) => {
+                   e.preventDefault();
+                   document.getElementById('aboutus')?.scrollIntoView({ behavior: 'smooth' });
+                 }}
+               >
+                 About us
+                 <span className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-secondary -translate-x-1/2 transition-all duration-300 group-hover:w-full" />
+               </Link>
+            <DropdownMenu
+              open={dropdownOpen} 
+              onOpenChange={setDropdownOpen} 
+              modal={false}>
+                <div 
+                  onMouseEnter={() => setDropdownOpen(true)} 
+                  onMouseLeave={() => setDropdownOpen(false)}
+                  className="relative inline-block"
+                >
+              <DropdownMenuTrigger className="relative flex items-center hover:text-secondary transition-colors focus:outline-none group py-1">
+                <span className="relative">
+                  Challenge
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-secondary transition-all duration-300 group-hover:w-full group-data-[state=open]:w-full" />
+                </span>
+                <ChevronDown className="w-4 h-4 ml-1 transition-transform group-data-[state=open]:rotate-180"/>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 p-2">
-                <DropdownMenuItem className="cursor-pointer font-medium">Marketing Hub</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">Sales Hub</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">Service Hub</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">CMS Hub</DropdownMenuItem>
+              <DropdownMenuContent
+                onMouseEnter={() => setDropdownOpen(true)}
+                className="w-48 p-2">
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger className="cursor-pointer font-medium">
+                    <span className="hover:text-secondary transition-colors w-full">
+                      Argali
+                    </span>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent className="w-48">
+                      <DropdownMenuItem className="cursor-pointer"
+                        // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById('challenge');
+                          if (element) {
+                            // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        >
+                        Altai</DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer"
+                        // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById('challenge');
+                          if (element) {
+                            // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        >
+                        Khangai</DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer"
+                        // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById('challenge');
+                          if (element) {
+                            // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        >
+                        GOBI</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  
+                  <DropdownMenuSubTrigger className="cursor-pointer font-medium">
+                    <span className="hover:text-secondary transition-colors w-full">
+                      Ibex
+                    </span>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent className="w-48">
+                      <DropdownMenuItem className="cursor-pointer"
+                        // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById('Ibex');
+                          if (element) {
+                            // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        >
+                        Altai</DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer"
+                        // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById('Ibex');
+                          if (element) {
+                            // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                        >
+                        GOBI</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                
+                
+                <DropdownMenuItem className="cursor-pointer font-medium"
+                  // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('other');
+                    if (element) {
+                      // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  >
+                  Other</DropdownMenuItem>
               </DropdownMenuContent>
+              </div>
             </DropdownMenu>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center hover:text-primary transition-colors focus:outline-none group">
-                Resources <ChevronDown className="w-4 h-4 ml-1 transition-transform group-data-[state=open]:rotate-180" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 p-2">
-                <DropdownMenuItem className="cursor-pointer font-medium">Blog</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">Ebooks</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">Case Studies</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer font-medium">Community</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
-          </div>
-
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/login" className="flex items-center text-secondary font-medium hover:text-primary transition-colors">
-              <User className="w-4 h-4 mr-1" /> Log in
+              <Link 
+                 href="#gallery" 
+                 className="relative group hover:text-secondary transition-colors cursor-pointer"
+                 onClick={(e) => {
+                   e.preventDefault();
+                   document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+                 }}
+               >
+              Gallery
+              <span className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-secondary -translate-x-1/2 transition-all duration-300 group-hover:w-full"/>
             </Link>
-            <Button className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-md px-6 shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all hover:-translate-y-0.5">
-              Get started free
-            </Button>
           </div>
+          
+       
+          {/* Desktop CTAs */}
+          
 
           {/* Mobile Menu Toggle */}
           <button 
@@ -139,23 +284,74 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-xl p-4 flex flex-col space-y-4 animate-in slide-in-from-top-5 duration-200">
-            <div className="space-y-2">
-              <h3 className="font-bold text-muted-foreground text-xs uppercase tracking-wider mb-2">Products</h3>
-              <Link href="#" className="block py-2 text-secondary font-medium hover:text-primary">Marketing Hub</Link>
-              <Link href="#" className="block py-2 text-secondary font-medium hover:text-primary">Sales Hub</Link>
-            </div>
-            <div className="space-y-2 border-t border-border pt-4">
-              <h3 className="font-bold text-muted-foreground text-xs uppercase tracking-wider mb-2">Resources</h3>
-              <Link href="#" className="block py-2 text-secondary font-medium hover:text-primary">Blog</Link>
-              <Link href="#" className="block py-2 text-secondary font-medium hover:text-primary">Academy</Link>
-            </div>
-            <div className="pt-4 flex flex-col space-y-3">
-              <Button className="w-full bg-primary hover:bg-primary/90">Get started free</Button>
-              <Button variant="outline" className="w-full border-secondary text-secondary hover:bg-secondary hover:text-white">Log in</Button>
-            </div>
+          <div className="md:hidden bg-background/95 backdrop-blur-md border-b">
+            <nav className="flex flex-col p-6 space-y-6">
+
+              {/* 1. Энгийн линкүүд */}
+              <Link 
+                 href="#aboutus" 
+                 className="relative group hover:text-secondary transition-colors cursor-pointer"
+                 onClick={(e) => {
+                   e.preventDefault();
+                   document.getElementById('aboutus')?.scrollIntoView({ behavior: 'smooth' });
+                 }}
+               >
+                About us
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
+
+                <Link 
+                   href="#gallery" 
+                   className="relative group hover:text-secondary transition-colors cursor-pointer"
+                   onClick={(e) => {
+                     e.preventDefault();
+                     document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+                   }}
+                 >
+                Gallery
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
+
+              {/* 2. Challenge - Dropdown-ийг гар утсанд зориулж "Accordion" хэлбэрээр хийх нь илүү эвтэйхэн */}
+              <div className="space-y-4">
+                <div className="text-lg font-medium text-muted-foreground uppercase text-xs tracking-widest">
+                  Challenges
+                </div>
+                <div className="pl-4 flex flex-col space-y-4 border-l-2 border-primary/20">
+                  <button 
+                    onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                    className="text-left hover:text-primary transition-colors"
+                  >
+                    Altai
+                  </button>
+                  <button 
+                    onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                    className="text-left hover:text-primary transition-colors"
+                  >
+                    Khangai
+                  </button>
+                  <button 
+                    onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                    className="text-left hover:text-primary transition-colors"
+                  >
+                    GOBI
+                  </button>
+                </div>
+              </div>
+                <Link 
+                   href="#contact" 
+                   className="relative group hover:text-secondary transition-colors cursor-pointer"
+                   onClick={(e) => {
+                     e.preventDefault();
+                     document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
+                   }}
+                 >
+                Contact
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </nav>
           </div>
-        )}
+              )}
       </nav>
     </header>
   );
