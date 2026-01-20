@@ -94,7 +94,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
       {/* Main Nav */}
       <nav 
         className={cn(
-          "w-full transition-all duration-300 border-b border-transparent bg-primary backdrop-blur-sm",
+          "w-full transition-all duration-300 border-b border-transparent bg-primary/90 backdrop-blur-sm",
           isScrolled ? "shadow-md py-2 border-border/10" : "py-4"
         )}
       >

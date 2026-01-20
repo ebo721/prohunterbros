@@ -117,7 +117,7 @@ export default function Home() {
                   Quality<br /> 
                   <span className="text-secondary text-4xl"> over </span>quantity
                 </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-lg font-light leading-relaxed">
                   We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients.  Our crew is well skilled and professional staffs who have more than 10 years experiences in the hunting services across the country.
                   
                   In business, we don’t pursue number but the Quality is mandatory.
@@ -136,7 +136,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <FeatureCard
-                  imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
+                  imageSrc="altaiargali.jpeg"
                   title="Altai Argali"
                   description="Altai Argali hunt is located in Bayan-Ulgii, Khovd and Uvs provinces, approx. 10 days, average horn size 50” length and 18” base, shooting range at 300-500 yards with all-inclusive package."
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
@@ -144,13 +144,13 @@ export default function Home() {
               <FeatureCard 
                 icon={<Users className="w-6 h-6" />}
                 title="Khangai Argali"
-                imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
+                imageSrc="khangaiargali.jpeg"
                 description="Khangai Argali hunt is located in mountains of Khangai region, approx. 8-10 days, average horn size 46” length and 15” base, shooting range at 300-500 yards with all-inclusive package."
                 linkHref="#"
               />
               <FeatureCard 
-                imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000"
-                title="GOBI's Argali"
+                imageSrc="gobiargali.jpeg"
+                title="GOBI Argali"
                 description="Gobi Argali hunt is located in Gobi desert south area of the country, approx. 8-10 days, average horn size 42” length and 15” base, shooting range at 200-400 yards with all-inclusive camping."
                 linkHref="#"
               />
