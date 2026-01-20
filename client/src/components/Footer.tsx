@@ -108,7 +108,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-center items-center text-sm text-white/50">
-          <p>Copyright © 2026 EZ solution LLC</p>
+          <p>Copyright © 2026 Pro Hunter Bros LLC</p>
         </div>
       </div>
     </footer>

@@ -18,31 +18,42 @@ import 'swiper/css/effect-fade';
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070",
-    title: "Global Connectivity",
-    description: "Bringing world-class marketing solutions to your fingertips."
+    image: "gallery10.jpeg"
   },
   {
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2070",
-    title: "Data Driven Success",
-    description: "Analyze and grow your business with our powerful CRM."
-  },
-  // ШИНЭЭР НЭМЭГДСЭН ЗУРАГНУУД:
-  {
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2071",
-    title: "Team Collaboration",
-    description: "Work together seamlessly with your team members anywhere in the world."
+    image: "gallery.jpeg"
   },
   {
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2070",
-    title: "Advanced Analytics",
-    description: "Deep dive into your metrics and make better data-informed decisions."
+    image: "gallery1.jpeg"
   },
   {
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070",
-    title: "Digital Strategy",
-    description: "Transform your digital presence with our expert marketing strategies."
-  }
+    image: "gallery2.jpeg"
+  },
+  {
+    image: "gallery3.jpeg"
+  },
+ {
+    image: "gallery4.jpeg"
+  },
+  {
+    image: "gallery5.jpeg"
+  },
+  {
+    image: "gallery6.jpeg"
+  },
+  {
+    image: "gallery7.jpeg"
+   
+  },
+  {
+    image: "gallery8.jpeg"
+   
+  },
+  {
+    image: "gallery9.jpeg"
+   
+  },
+
 ];
 
 export default function Home() {
@@ -192,8 +203,7 @@ export default function Home() {
                 icon={<BarChart3 className="w-6 h-6" />}
                   title="Other hunting"
                   description="Marketing software to help you grow traffic and run complete inbound campaigns."
-                  imageSrc="/images/marketing-preview.jpg"
-                  linkHref="#"
+                  imageSrc="other.jpeg"
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
 
               />
@@ -239,8 +249,7 @@ export default function Home() {
                   {/* 1:1 Харьцаатай зураг */}
                   <div className="aspect-square relative overflow-hidden rounded-xl shadow-lg group">
                     <img 
-                      src={slide.image} 
-                      alt={slide.title}
+                      src={slide.image}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {/* Зураг дээрх Overlay (Hover хийхэд харагдана) */}
@@ -314,9 +323,7 @@ export default function Home() {
               >
                 {slides.map((slide, idx) => (
                   <SwiperSlide key={idx} className="flex flex-col items-center justify-center text-white">
-                    <img src={slide.image} className="max-h-[70vh] object-contain rounded-lg shadow-2xl" alt="" />
-                    <h3 className="mt-6 text-2xl font-bold">{slide.title}</h3>
-                    <p className="opacity-70">{slide.description}</p>
+                    <img src={slide.image} className="max-h-[70vh] object-contain rounded-lg shadow-2xl"/>
                   </SwiperSlide>
                 ))}
               </Swiper>

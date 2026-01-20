@@ -22,7 +22,7 @@ export function FeatureCard({ imageSrc, title, description, linkText = "Learn mo
     <>
       {/* Үндсэн Карт */}
       <div 
-        className="bg-card rounded-xl border border-border/50 shadow-sm hover:shadow-2xl transition-all duration-500 group overflow-hidden cursor-pointer"
+        className="bg-card rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 group overflow-hidden cursor-pointer"
         onClick={() => setIsOpen(true)}
       >
         <div className="relative h-48 overflow-hidden">
