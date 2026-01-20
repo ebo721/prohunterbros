@@ -88,7 +88,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }} // Анимаци дууссаны дараа гарч ирнэ
                 className="space-y-6"
               >
-                <p className="text-lg md:text-xl text-gray-200 max-w-lg mx-auto !text-white">
+                <p className="text-base md:text-xl text-white max-w-[90%] md:max-w-lg mx-auto px-4">
                   Where Challenge Meets Professional Hunting.
                 </p>
               </motion.div>
