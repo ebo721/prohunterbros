@@ -201,7 +201,7 @@ export default function Home() {
               <div className="flex flex-col gap-8 w-full">
               <FeatureCard 
                 icon={<BarChart3 className="w-6 h-6" />}
-                  title="Other hunting"
+                  title="More challenges"
                   description="Marketing software to help you grow traffic and run complete inbound campaigns."
                   imageSrc="other.jpeg"
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
