@@ -88,7 +88,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }} // Анимаци дууссаны дараа гарч ирнэ
                 className="space-y-6"
               >
-                <p className="text-base md:text-xl text-white max-w-[90%] md:max-w-lg mx-auto px-4">
+                <p className="text-sm md:text-xl text-white max-w-[90%] md:max-w-lg mx-auto px-4">
                   Where Challenge Meets Professional Hunting.
                 </p>
               </motion.div>
@@ -119,7 +119,6 @@ export default function Home() {
                 </h2>
                 <p className="text-muted-foreground text-lg font-light leading-relaxed">
                   We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients.  Our crew is well skilled and professional staffs who have more than 10 years experiences in the hunting services across the country.
-                  
                   In business, we don’t pursue number but the Quality is mandatory.
                   For us, how’s our customer satisfaction is more important than how many hunters and hunts we have.
                   We provide a cordial service on every part of the trip in order to satisfy clients with successful hunt and beautiful trophy.
@@ -129,9 +128,9 @@ export default function Home() {
           </div>
         </section>
         {/* --- 2.1 Argali SECTION --- */}
-        <section id="challenge" className="bg-slate-50 py-0">
+        <section id="challenge" className="bg-primary/10 pt-12">
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold text-secondary mb-12">
               Argali
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -158,33 +157,34 @@ export default function Home() {
           </div>
         </section>
         {/* --- 2.2 Ibex SECTION --- */}
-        <section id="Ibex" className="bg-slate-50 pt-12">
+        <section id="Ibex" className="bg-primary/10 pt-12">
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold text-secondary mb-12">
               Ibex
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <FeatureCard 
                 icon={<BarChart3 className="w-6 h-6" />}
-                  title="Altai"
+                  title="Altai Ibex"
                   description="Marketing software to help you grow traffic and run complete inbound campaigns."
-                  imageSrc="/images/marketing-preview.jpg"
+                  imageSrc="altaiibex.jpeg"
                   linkHref="#"
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
               />
               <FeatureCard 
                 icon={<Users className="w-6 h-6" />}
-                title="GOBI"
+                title="GOBI Ibex"
                 description="CRM software to help you get deeper insights and close more deals faster."
+                imageSrc="gobiibex.jpeg"
                 linkHref="#"
               />
             </div>
           </div>
         </section>
         {/* --- 2.3 Other SECTION --- */}
-        <section id="other" className="bg-slate-50 py-12">
+        <section id="other" className="bg-primary/10 py-12">
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold text-secondary mb-12">
               Other
             </h2>
               <div className="flex flex-col gap-8 w-full">
@@ -203,7 +203,7 @@ export default function Home() {
           </div>
         </section>
         {/* --- 3. Gallery SECTION --- */}
-        <section id="gallery" className="max-w-7xl mx-auto px-4">
+        <section id="gallery" className="max-w-7xl mx-auto px-4 py-10">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-12 text-center">
             Gallery
           </h2>
@@ -249,16 +249,12 @@ export default function Home() {
                       onClick={() => openLightbox(index)} // Энд index-ийг дамжуулна
                     >
                       <p className="text-white font-medium border border-white px-4 py-2 rounded-full pointer-events-none">
-                        Дэлгэрэнгүй харах
+                        See more
                       </p>
                     </div>
                   </div>
 
-                  {/* Зургийн доорх текст (Сонголттой) */}
-                  <div className="text-center md:text-left">
-                    <h3 className="text-xl font-bold text-secondary">{slide.title}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">{slide.description}</p>
-                  </div>
+                  
                 </div>
               </SwiperSlide>
             ))}

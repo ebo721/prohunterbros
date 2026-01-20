@@ -38,7 +38,7 @@ export function FeatureCard({ imageSrc, title, description, linkText = "Learn mo
         </div>
 
         <div className="p-6">
-          <h3 className="text-xl font-bold text-secondary mb-2">{title}</h3>
+          <h3 className="text-xl font-normal text-secondary mb-2">{title}</h3>
           <p className="text-muted-foreground line-clamp-2 text-sm mb-4">{description}</p>
           <div className="flex items-center text-primary font-bold text-sm">
             {linkText} <ArrowRight className="ml-2 w-4 h-4" />
@@ -81,9 +81,9 @@ export function FeatureCard({ imageSrc, title, description, linkText = "Learn mo
 
               {/* Текст мэдээлэл */}
               <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-white">
-                <h2 className="text-3xl font-black text-slate-900 mb-4">{title}</h2>
-                <div className="w-60 h-1 bg-primary mb-6 rounded-full mx-auto" />
-                <p className="text-slate-600 text-lg leading-relaxed overflow-y-auto max-h-[300px]">
+                <h2 className="text-2xl font-normal font-black text-slate-900 mb-4">{title}</h2>
+                <div className="w-60 h-[2px] bg-primary mb-6 rounded-full mx-auto" />
+                <p className="text-slate-600 text-lg font-light leading-relaxed overflow-y-auto max-h-[300px]">
                   {description}
                 </p>
                 {/* <button 
