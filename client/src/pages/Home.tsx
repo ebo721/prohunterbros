@@ -73,7 +73,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/60 z-10" />
           </div>
 
-          <div className="relative z-20 px-0 md:px-8 max-w-7xl mx-auto w-full text-center">
+          <div className="relative z-20 px-1 md:px-8 max-w-7xl mx-auto w-full text-center">
             <div className="space-y-6">
 
               {/* 1. SPLIT TEXT ANIMATION (Гарчиг хэсэг) */}
@@ -149,7 +149,7 @@ export default function Home() {
               />
               <FeatureCard 
                 imageSrc="gobiargali.jpeg"
-                title="GOBI Argali"
+                title="Gobi Argali"
                 description="Gobi Argali hunt is located in Gobi desert south area of the country, approx. 8-10 days, average horn size 42” length and 15” base, shooting range at 200-400 yards with all-inclusive camping."
                 linkHref="#"
               />
@@ -173,7 +173,7 @@ export default function Home() {
               />
               <FeatureCard 
                 icon={<Users className="w-6 h-6" />}
-                title="GOBI Ibex"
+                title="Gobi Ibex"
                 description="CRM software to help you get deeper insights and close more deals faster."
                 imageSrc="gobiibex.jpeg"
                 linkHref="#"
@@ -356,13 +356,13 @@ export default function Home() {
         .text-part.left {
           transform: translateX(-100%);
           animation-name: slide-in-left;
-          padding-right: 15px;
+          padding-right: 5px;
         }
 
         .text-part.right {
           transform: translateX(100%);
           animation-name: slide-in-right;
-          padding-left: 15px;
+          padding-left: 5px;
           color: #df7a27; /* Баруун талын үгийг онцлох өнгө (заавал биш) */
         }
 

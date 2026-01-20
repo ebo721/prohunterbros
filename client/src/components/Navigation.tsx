@@ -199,7 +199,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                           }
                         }}
                         >
-                        GOBI</DropdownMenuItem>
+                        Gobi</DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
@@ -235,7 +235,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                           }
                         }}
                         >
-                        GOBI</DropdownMenuItem>
+                        Gobi</DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
@@ -334,7 +334,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                     onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
                     className="text-left hover:text-primary transition-colors"
                   >
-                    GOBI
+                    Gobi
                   </button>
                 </div>
               </div>
