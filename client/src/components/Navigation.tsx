@@ -314,7 +314,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
 
               {/* 2. Challenge - Dropdown-ийг гар утсанд зориулж "Accordion" хэлбэрээр хийх нь илүү эвтэйхэн */}
               <div className="space-y-4">
-                <div className="text-lg font-medium text-muted-foreground uppercase text-xs tracking-widest">
+                <div className="text-base">
                   Challenges
                 </div>
                 <div className="pl-4 flex flex-col space-y-4 border-l-2 border-primary/20">
@@ -322,19 +322,19 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                     onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
                     className="text-left hover:text-primary transition-colors"
                   >
-                    Altai
+                    Argali
                   </button>
                   <button 
-                    onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                    onClick={() => { document.getElementById('Ibex')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
                     className="text-left hover:text-primary transition-colors"
                   >
-                    Khangai
+                    Ibex
                   </button>
                   <button 
-                    onClick={() => { document.getElementById('challenge')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
+                    onClick={() => { document.getElementById('other')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
                     className="text-left hover:text-primary transition-colors"
                   >
-                    Gobi
+                    Other
                   </button>
                 </div>
               </div>
@@ -346,7 +346,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                      document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
                    }}
                  >
-                Contact
+                Contact us
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
               </Link>
             </nav>
