@@ -66,7 +66,7 @@ export default function Home() {
         <section className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden py-20">
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070" 
+              src="banner.jpeg" 
               alt="Background" 
               className="w-full h-full object-cover"
             />
@@ -105,7 +105,7 @@ export default function Home() {
                   {/* Зургийн ард талын гоёл (Сонголттой) */}
                   <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary/20 rounded-2xl -z-10"></div>
                   <img 
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200" 
+                    src="aboutus.jpeg" 
                     alt="About Us" 
                     className="w-full h-[400px] object-cover rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
                   />
@@ -113,9 +113,9 @@ export default function Home() {
               </div>
               {/* 2. Текстийн хэсэг */}
               <div className="w-full md:w-1/2 space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-primary leading-tight">
                   Quality<br /> 
-                  <span className="text-primary text-4xl"> over </span>quantity
+                  <span className="text-secondary text-4xl"> over </span>quantity
                 </h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
                   We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients.  Our crew is well skilled and professional staffs who have more than 10 years experiences in the hunting services across the country.
