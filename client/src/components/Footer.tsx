@@ -58,7 +58,7 @@ export function Footer() {
                         // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
                         element.scrollIntoView({ behavior: 'smooth' });
                       }
-                    }}>Argali</Link></li>
+                    }}>Argali (Ovis ammon)</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors"
                     // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
                     onClick={(e) => {
@@ -68,7 +68,7 @@ export function Footer() {
                         // scroll-mt нэмсэн бол smooth scroll шууд ажиллана
                         element.scrollIntoView({ behavior: 'smooth' });
                       }
-                    }}>Ibex</Link></li>
+                    }}>Ibex (Capra sibirica)</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors"
                     // Link ашиглахын оронд шууд MenuItem-ийн onClick дээр бичих нь хамгийн найдвартай
                     onClick={(e) => {
@@ -98,6 +98,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-white/70 mb-6">
               <li>+976-96122771</li>
               <li>info@prohuntbros.mn</li>
+              <li>Peace avanue, Sukhbaatar disctrict 12000, Ulaanbaatar, Mongolia</li>
             </ul>
             <div className="flex space-x-4">
               <a href="#" className="text-white/70 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>

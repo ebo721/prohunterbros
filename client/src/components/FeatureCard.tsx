@@ -40,7 +40,7 @@ export function FeatureCard({ imageSrc, title, description, linkText = "Learn mo
         <div className="p-6">
           <h3 className="text-xl font-normal text-secondary mb-2">{title}</h3>
           <p className="text-muted-foreground line-clamp-2 text-sm mb-4">{description}</p>
-          <div className="flex items-center text-primary font-bold text-sm">
+          <div className="flex items-center justify-center text-primary font-bold text-sm">
             {linkText} <ArrowRight className="ml-2 w-4 h-4" />
           </div>
         </div>
