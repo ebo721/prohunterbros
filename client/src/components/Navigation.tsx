@@ -148,7 +148,7 @@ export function Navigation({ highContrast, toggleHighContrast }: NavProps) {
                 >
               <DropdownMenuTrigger className="relative flex items-center hover:text-secondary transition-colors focus:outline-none group py-1">
                 <span className="relative">
-                  Challenge
+                  Challenges
                   <span className="absolute -bottom-1 left-1/2 h-0.5 w-0 bg-secondary -translate-x-1/2 transition-all duration-300 group-hover:w-full group-data-[state=open]:w-full" />
                 </span>
                 <ChevronDown className="w-4 h-4 ml-1 transition-transform group-data-[state=open]:rotate-180"/>
