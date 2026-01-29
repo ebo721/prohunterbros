@@ -148,20 +148,26 @@ export default function Home() {
               <FeatureCard
                   imageSrc="altaiargali.jpeg"
                   title="Altai Argali"
-                  description="Altai Argali hunt is located in Bayan-Ulgii, Khovd and Uvs provinces, approx. 10 days, average horn size 50” length and 18” base, shooting range at 300-500 yards with all-inclusive package."
+                  description="Altai Argali hunting is a specialized form of big‑game hunting focused on the argali sheep (Ovis ammon), a large wild goat species native to Central and South Asia, often in rugged mountainous terrain. The hunt requires careful navigation of remote landscapes, knowledge of argali behavior, and adherence to legal quotas and seasonal restrictions to ensure sustainable wildlife management.  
+The Altai argali is a subspecies of the wild argali goat that roams the high‑altitude steppes and mountain ranges of the Altai Mountains in Central Asia. It is the largest of all wild sheep, with males weighing up to 200 kg and sporting impressive, long curved horns that can span over 60 inch.
+Altai argali hunting is located in Bayan-Ulgii, Khovd and Uvs provinces, approx. 10-14 days, shooting range at 300-500 yards with all-inclusive package and a highly regulated, low‑quota sport aimed at maintaining ecological balance in one of Central Asia’s most remote mountain ecosystems."
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
               />
               <FeatureCard 
                 icon={<Users className="w-6 h-6" />}
                 title="Khangai Argali"
                 imageSrc="khangaiargali.jpeg"
-                description="Khangai Argali hunt is located in mountains of Khangai region, approx. 8-10 days, average horn size 46” length and 15” base, shooting range at 300-500 yards with all-inclusive package."
+                description="Khangai Argali (Ovis ammon hangaiensis) is the subspecies of wild argali that lives in the Khangai mountain range of central Mongolia. It occupies high‑altitude alpine meadows, rocky slopes, and semi‑arid foothills.  
+Males can weigh up to 180 kg and possess long, curved horns that may reach 50 inches. They have a thick, shaggy winter coat that sheds in the warmer months.  
+The Khangai hunting is located in mountains of Khangai region, approx. 8-10 days, shooting range at 300-500 yards with all-inclusive package and a robust wild sheep uniquely adapted to the rugged, high‑land environments of the Khangai Mountains, and its conservation hinges on careful management of hunting and habitat protection."
                 linkHref="#"
               />
               <FeatureCard 
                 imageSrc="gobiargali.jpeg"
                 title="Gobi Argali"
-                description="Gobi Argali hunt is located in Gobi desert south area of the country, approx. 8-10 days, average horn size 42” length and 15” base, shooting range at 200-400 yards with all-inclusive camping."
+                description="Gobi argali (Ovis ammon gobiensis), the largest wild sheep in the Gobi Desert, known for its massive horns and adaptation to extreme arid conditions.  
+High‑altitude plateaus and sandy steppes of the Gobi Desert in Mongolia. Males reachup 180kg and have long, curved horns (up to 50 inch). 
+Gobi argali hunting is located in the Gobi desert south area of the country, approx. 8-10 days, shooting range at 200-400 yards with all-inclusive camping and a highly regulated, low‑quota sport aimed at preserving the fragile desert ecosystem while allowing responsible, sustainable use of this iconic wild sheep."
                 linkHref="#"
               />
             </div>
