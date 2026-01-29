@@ -177,7 +177,10 @@ export default function Home() {
               <FeatureCard 
                 icon={<BarChart3 className="w-6 h-6" />}
                   title="Altai Ibex"
-                  description="Marketing software to help you grow traffic and run complete inbound campaigns."
+                  description="Altai ibex (Capra ibex) is a large, horned wild goat that roams the high‑altitude steppes and rugged ridges, rocky cliffs and semi‑arid slopes at elevations from 1,500m to over 3,000m of the Altai Mountains in Mongolia.  
+Males weigh up to ~170 kg and have large, curved horns that can span over 50 inch.
+The hunting is located in the Altai region west of  Mongolia, approx. 5-7 days, shooting range at 400-600 yards with all-inclusive camp package .
+The Altai Ibex hunting is strictly regulated with very low quotas and limited seasonal windows to ensure long‑term sustainability."
                   imageSrc="altaiibex.jpeg"
                   linkHref="#"
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
@@ -185,7 +188,10 @@ export default function Home() {
               <FeatureCard 
                 icon={<Users className="w-6 h-6" />}
                 title="Gobi Ibex"
-                description="CRM software to help you get deeper insights and close more deals faster."
+                description="Gobi ibex (Capra caucasica), a large wild goat that inhabits the high‑altitude plateaus and rocky slopes of the Gobi Desert in Mongolia. 
+Males can weigh up to ~150 kg, with long, curved horns that may reach 45 inch.
+The hunting is located in the gobi region south of  Mongolia, approx. 5-7 days, shooting range at 300-500 yards with all-inclusive camp package .
+The Gobi Ibex hunting is a tightly regulated, low‑quota activity designed to balance limited recreational use with the long‑term survival of this iconic mountain goat."
                 imageSrc="gobiibex.jpeg"
                 linkHref="#"
               />
@@ -202,13 +208,10 @@ export default function Home() {
               <FeatureCard 
                 icon={<BarChart3 className="w-6 h-6" />}
                   title="More challenges"
-                  description="Marketing software to help you grow traffic and run complete inbound campaigns."
+                  description="We offer fully customized hunting trips- design your own itinerary, choose your challenge! Combos, Maral stag, Boar, Bird, Fishing and Gazelle hunting etc are available and let us tailor that fits your goals and schedule."
                   imageSrc="other.jpeg"
                   onClick={() => openLightbox(0)} // Index-ийн оронд 0
-
               />
-
-
             </div>
           </div>
         </section>
@@ -279,7 +282,7 @@ export default function Home() {
           className="rounded-full w-14 h-14 md:w-auto md:h-12 bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group p-0 md:px-6"
         >
           <a 
-            href="https://wa.me/97696122771?text=Hello? What is your challenge?" 
+            href="https://wa.me/97696122771?text=Hello? Direct inquiry" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center"

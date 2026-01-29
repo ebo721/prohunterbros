@@ -4,79 +4,68 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3 {
+    /* text-primary гэж бичихийн тулд tailwind.config дээр заавал тодорхойлсон байх ёстой */
+    @apply font-bold tracking-tight;
+    color: hsl(var(--primary)); 
+  }
+}
+
 :root {
-  /* HubSpot Inspired Palette */
-  /* Primary Orange: #ff4800 -> HSL 17 100% 50% */ 
   --primary: 27 74% 51%;
   --primary-foreground: 0 0% 100%;
-
-  /* Navy Text/Secondary: #33475b -> HSL 210 29% 28% */
   --secondary: 210 29% 28%;
   --secondary-foreground: 0 0% 100%;
-
-  /* Background Light Gray: #f6f9fc -> HSL 210 20% 98% */
   --background: 210 20% 98%;
   --foreground: 210 29% 28%;
-
-  /* Card / White backgrounds */
   --card: 0 0% 100%;
   --card-foreground: 210 29% 28%;
   --popover: 0 0% 100%;
   --popover-foreground: 210 29% 28%;
-
-  /* Muted / Accents */
   --muted: 210 20% 96%;
   --muted-foreground: 210 20% 40%;
-  --accent: 197 100% 45%; /* Cyan accent sometimes used by HubSpot */
+  --accent: 197 100% 45%;
   --accent-foreground: 0 0% 100%;
-  
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-
   --border: 210 20% 90%;
   --input: 210 20% 90%;
   --ring: 17 100% 50%;
-  
   --radius: 0.5rem;
-
-  /* Typography */
   --font-sans: 'Lexend Deca', sans-serif;
   --font-display: 'Lexend Deca', sans-serif;
 }
 
-/* High Contrast Mode Overrides */
 .high-contrast {
   --background: 0 0% 100%;
-  --foreground: 210 29% 28%; /* Yellow text */
-  
+  --foreground: 210 29% 28%;
   --primary: 210 29% 28%;
   --primary-foreground: 0 0% 100%;
-  
   --secondary: 27 74% 51%;
   --secondary-foreground: 27 74% 51%;
-  
   --card: 0 0% 100%;
   --card-foreground: 0 0% 100%;
-  
   --muted: 0 0% 20%;
-  --muted-foreground: 210 29% 28%%;
-  
+  --muted-foreground: 210 29% 28%; /* Энд байсан илүү %-ийг устгалаа */
   --border: 210 29% 28%;
   --input: 210 29% 28%;
 }
 
 @layer base {
-  
-
+  /* Tailwind config дээр primary тодорхойлогдоогүй бол @apply text-primary ажиллахгүй */
+  /* Тиймээс шууд CSS хувьсагчаа ашиглах нь хамгийн найдвартай */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply font-bold tracking-tight text-primary;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: hsl(var(--primary));
   }
   
   .high-contrast h1, 
   .high-contrast h2, 
   .high-contrast h3 {
-    @apply text-secondary;
+    color: hsl(var(--secondary));
   }
 }
 
@@ -85,11 +74,9 @@
     text-wrap: balance;
   }
   
-  /* Smooth transitions for high contrast toggle */
   .transition-colors-all {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
   }
- 
 }
