@@ -129,10 +129,7 @@ export default function Home() {
                   <span className="text-secondary text-4xl"> over </span>quantity
                 </h2>
                 <p className="text-muted-foreground text-lg font-light leading-relaxed">
-                  We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients.  Our crew is well skilled and professional staffs who have more than 10 years experiences in the hunting services across the country.
-                  In business, we don’t pursue number but the Quality is mandatory.
-                  For us, how’s our customer satisfaction is more important than how many hunters and hunts we have.
-                  We provide a cordial service on every part of the trip in order to satisfy clients with successful hunt and beautiful trophy.
+                  We are a local company that organizes all-inclusive hunting trips in Mongolia for international clients. Our crew is well-skilled and professional staff who have more than 10 years' experience in the hunting services across the country. In business, we don’t pursue numbers, but Quality is mandatory. For us, our customer satisfaction is more important than how many hunters and hunts we have. We provide cordial service on every part of the trip in order to satisfy clients with a successful hunt and beautiful trophy.
                 </p>
               </div>
             </div>
